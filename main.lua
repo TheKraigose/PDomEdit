@@ -262,7 +262,7 @@ function inputCheck()
 		end
 		if ((love.keyboard.isDown("rctrl") or love.keyboard.isDown("lctrl")) and
 			love.keyboard.isDown("q")) then
-			os.exit()
+			os.exit(0)
 		end
 		if love.keyboard.isDown(" ") and isInHelp == true then
 			helpPage = helpPage + 1
@@ -362,13 +362,15 @@ function inputCheck()
 					dialogCooldown = 0
 					inputCooldown = 0
 				end
-				if love.keyboard.isDown("s") and isSaving == false then
+				if (love.keyboard.isDown("rctrl") or love.keyboard.isDown("lctrl")) and
+					love.keyboard.isDown("s") and isSaving == false then
 					savingTimer = 0
 					saveCurrentMap()
 					dialogCooldown = 0
 					inputCooldown = 0
 				end
-				if love.keyboard.isDown("o") and isOpening == false then
+				if (love.keyboard.isDown("rctrl") or love.keyboard.isDown("lctrl")) and 
+					love.keyboard.isDown("o") and isOpening == false then
 					openingTimer = 0
 					openCurrentMap()
 					dialogCooldown = 0
@@ -715,8 +717,11 @@ function love.draw()
 			drawLevelChangeMsg()
 			drawCurrentLevelNum()
 		end
-		if savingTimer < 100 or openingTimer < 100 then
+		if savingTimer < 100 then
 			drawSavingDialog()
+		end
+		if openingTimer < 100 then
+			drawOpeningDialog()
 		end
 	end
 	if isInHelp == true then
@@ -729,7 +734,7 @@ function drawHelpScreen()
 	love.graphics.rectangle("fill", 0, 0, 1280, 800)
 	love.graphics.setColor(255, 255, 255, 255)
 	if helpPage == 1 then
-		love.graphics.printf("The Controls:\n\nArrow Keys = Move and Browse\nL -> Layer Toggle\nM -> Map Number Selection\nS - > Back up map and Save\nO -> open current map number\nD -> Eraser\nF -> Pencil Tool\nH-> Hollow Out Level to border\nB -> Open Tile or Object Browser", 320, 32, 800, "left")
+		love.graphics.printf("The Controls:\n\nArrow Keys = Move and Browse\nL -> Layer Toggle\nM -> Map Number Selection\nCtrl+S - > Back up map and Save\nCtrl+O -> open current map number\nD -> Eraser\nF -> Pencil Tool\nH-> Hollow Out Level to border\nB -> Open Tile or Object BrowserCtrl+Q -> Quit Program (Doesn't save changes so be careful)", 320, 32, 800, "left")
 		love.graphics.printf("The Layers:\n\nLayer No 1 -> Tiles(Walls)\nThis is where solid walls go\n\nLayer No 2 - > Objects(Things)\nThis is where things such as the player and pickups go.", 320, 256, 800, "left")
 		love.graphics.printf("There is an experimental implemented feature called Run Mode which allows you to draw faster. It can disappear at ANY TIME! To toggle press R.", 320, 512, 900, "left")
 	end
@@ -740,6 +745,13 @@ function drawSavingDialog()
 	love.graphics.rectangle("fill", 384, 256, 512, 384)
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.printf("Saving map #: "..mapNumber, 460, 448, 400, "center")
+end
+
+function drawOpeningDialog()
+	love.graphics.setColor(0, 0, 0, 255)
+	love.graphics.rectangle("fill", 384, 256, 512, 384)
+	love.graphics.setColor(255, 255, 255, 255)
+	love.graphics.printf("Opening map #: "..mapNumber, 460, 448, 400, "center")
 end
 
 function drawLevelChangeMsg()
