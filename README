@@ -1,0 +1,37 @@
+PDomEdit 0.2 alpha
+
+To build, zip up the data folder and all lua files into a .love file.
+
+I reccomend for GUI users to use 7Zip on Windows. Save the file as "pdomedit.love". The extension is important.
+
+People on Linux/Unix/Mac OS X probably know of better ways ;P
+
+Then run with Love2D.
+
+A better manual will be designed, but for now:
+
+Controls once in a game:
+Arrow Keys = Move and Browse
+L -> Layer Toggle
+M -> Map Number Selection. Follow instructions on screen. Changes are sudden. Press Escape to back out
+Ctrl+S - > Back up map and Save
+Ctrl+O -> open current map number
+D -> Eraser
+F -> Pencil Tool
+H-> Hollow Out Level to border
+B -> Open Tile or Object Browser
+Ctrl+Q -> Quit Program (Doesn't save changes so be careful!)
+Space -> In browser, selects the object or tile and puts it into the palette. For objects, this also places said object on the map
+Escape -> In the browser and Map number selection, this backs out.
+
+F1 -> Pulls up a help dialog similar to this readme.
+
+R -> Toggles an albiet buggy run mode. Might disappear at any time!
+
+Layers:
+1 - Tiles
+2 - Objects (and later, doors)
+
+This editor is open source. You may use the code for any purpose, provided you give credit to me and pass the open source license on. (Only applies to my LUA files)
+
+However, please refrain from using my assets other than for testing/seeing how it works. Do not reuse in commercial
