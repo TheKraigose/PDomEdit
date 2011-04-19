@@ -12,7 +12,7 @@ function love.load()
 	end
 	
 	sprites = {}
-	for j=1, 25 do
+	for j=1, 33 do
 		sprites[j] = love.graphics.newImage("data/sprites/spr"..j..".png")
 	end
 	
@@ -69,7 +69,7 @@ function love.load()
 	things[12] = "SUBMACAMMO"
 	things[13] = "CHAINGUN"
 	things[14] = "CHAINGUNAMMO"
-	things[15] = "ROCKETLAUNCHER"
+	things[15] = "RCKTLAUNCHER"
 	things[16] = "ROCKETAMMO"
 	things[17] = "MAPLERIFLE"
 	things[18] = "MAPLEAMMO"
@@ -86,6 +86,14 @@ function love.load()
 	things[29] = "PLAYERNORD"
 	things[30] = "EXITNORMAL"
 	things[31] = "EXITSECRET"
+	things[32] = "DOORNORMHZ"
+	things[33] = "DOORNORMVT"
+	things[34] = "DOORLCKBHZ"
+	things[35] = "DOORLCKBVT"
+	things[36] = "DOORLCKRHZ"
+	things[37] = "DOORLCKRVT"
+	things[38] = "KEYBLUE"
+	things[39] = "KEYRED"
 	-- Props after this.
 	
 	currentObj = {}
@@ -233,6 +241,22 @@ function getSpriteFromNum(num)
 		return sprites[23]
 	elseif num == 31 then
 		return sprites[24]
+	elseif num == 32 then
+		return sprites[25]
+	elseif num == 33 then
+		return sprites[26]
+	elseif num == 34 then
+		return sprites[27]
+	elseif num == 35 then
+		return sprites[28]
+	elseif num == 36 then
+		return sprites[29]
+	elseif num == 37 then
+		return sprites[30]
+	elseif num == 38 then
+		return sprites[32]
+	elseif num == 39 then
+		return sprites[31]
 	else
 		return nil
 	end
@@ -692,11 +716,11 @@ function adjustBrowserCursor()
 		end
 	end
 	if layerNum == 2 then
-		if bCursor.index > 31 then
+		if bCursor.index > 39 then
 			bCursor.index = 0
 		end
 		if bCursor.index <= -1 then
-			bCursor.index = 31	-- for now
+			bCursor.index = 39	-- for now
 		end
 	end
 end
@@ -898,7 +922,7 @@ function drawObjectBrowser()
 			if amountOfItemsDrawn > maxAmtOfItems then
 				amountOfItemsDrawn = 0
 				drawListYPos = 32
-				drawListXPos = drawListXPos * 2
+				drawListXPos = drawListXPos + 160
 			end
 		end
 	end
